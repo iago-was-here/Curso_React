@@ -6,13 +6,7 @@ const App = () => {
   const ESCAPE_KEY = 27;
   const ENTER_KEY = 13;
 
-  const initialTaskList = [
-    { id: 1, description: 'Estudar React', checked: false },
-    { id: 2, description: 'Estudar Ingles', checked: true },
-    { id: 3, description: 'Tocar guitarra', checked: false },
-  ];
-
-  const [taskList] = useState(initialTaskList);
+  const [taskList, setTaskList] = useState([]);
   const [task, setTask] = useState('');
 
   const onChange = (event) => {
@@ -25,6 +19,10 @@ const App = () => {
 
   const submit = () => {
     console.log(task);
+    setTaskList([
+      ...taskList,
+      { id: new Date().getTime(), description: task, checked: false }
+    ]);
     erase();
   }
   const onKeyDown = (event) => {
