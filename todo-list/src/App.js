@@ -18,7 +18,6 @@ const App = () => {
   };
 
   const submit = () => {
-    console.log(task);
     setTaskList([
       ...taskList,
       { id: new Date().getTime(), description: task, checked: false }
@@ -34,6 +33,13 @@ const App = () => {
     if (event.which === ESCAPE_KEY) {
       erase();
     }
+  };
+
+  const onToggle = (task) => {
+    setTaskList(
+      taskList.map((obj) => (obj.id === task.id ? { ...obj, checked: !task.checked } : obj))
+    );
+    console.log(taskList);
   };
 
   return (
@@ -52,7 +58,14 @@ const App = () => {
           {
             taskList.map((task) => (
               <li key={task.id.toString()}>
-                <span className='task'>{task.description}</span>
+                <span
+                  className={["task", task.checked ? "checked" : ""].join(" ")}
+                  onClick={() => onToggle(task)}
+                  role='button'
+                  tabIndex={0}
+                >
+                  {task.description}
+                </span>
                 <button className='remove' type='button'>
                   <MdDelete size={28} />
                 </button>

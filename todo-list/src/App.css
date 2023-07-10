@@ -24,7 +24,12 @@ ul.task-list li {
   padding: 15px 15px 17px 15px;
 }
 
-.remove{
+.task.checked {
+  color: #b2bec3;
+  text-decoration: line-through;
+}
+
+.remove {
   background-color: transparent;
   border: none;
   color: #ff7675;
