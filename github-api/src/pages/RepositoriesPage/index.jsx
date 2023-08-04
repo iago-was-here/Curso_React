@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import Profile from "./Profile";
 import Filter from "./Filter";
+import Repositories from "./Repositories";
 
 import { Container, Sidebar, Main } from "./styles";
 
@@ -12,10 +13,10 @@ const RepositoriesPage = () => {
                 <Filter />
             </Sidebar>
             <Main>
-                Main
+                <Repositories />
             </Main>
         </Container>
     );
 }
 
-export default RepositoriesPage
+export default RepositoriesPage;

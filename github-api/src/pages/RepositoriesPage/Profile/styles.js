@@ -34,7 +34,6 @@ export const Login = styled.h1`
 `;
 
 export const Name = styled.h2`
-  margin-top: 0;
   font-size: ${(props) => props.theme.fontSize.sm};
   font-weight: normal;
 
