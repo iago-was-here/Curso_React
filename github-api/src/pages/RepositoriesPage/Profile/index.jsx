@@ -1,36 +1,49 @@
 import { React, useState } from "react";
 import { MdGroup, MdLocationCity, MdWork, MdLink } from "react-icons/md";
+import PropTypes from "prop-types";
 
 import { Container, Header, Avatar, Login, Name, Inner, Data } from "./styles";
 
-const Profile = () => {
+const Profile = ({ user }) => {
     return (
         <Container>
             <Header>
-                <Avatar src="https://avatars.githubusercontent.com/u/54692659?v=4" />
-                <Login>iago-was-here</Login>
-                <Name>Iago Ananias Silva</Name>
+                <Avatar src={user.avatar_url} />
+                <Login>{user.login}</Login>
+                <Name>{user.name}</Name>
             </Header>
             <Inner>
                 <Data>
                     <MdGroup size={20} />
-                    30&nbsp;<i>Seguidores</i>&nbsp;&middot;10&nbsp;<i>seguindo</i>
+                    {user.followers}&nbsp;<i>Seguidores</i>&nbsp;&middot;{user.following}&nbsp;<i>seguindo</i>
                 </Data>
-                <Data>
+                {user.company && (<Data>
                     <MdWork size={20} />
-                    BMS Tecnologia
-                </Data>
-                <Data>
+                    {user.company}
+                </Data>)}
+                {user.location && (<Data>
                     <MdLocationCity size={20} />
-                    Poços de Caldas
-                </Data>
-                <Data>
+                    {user.location}
+                </Data>)}
+                {user.blog && (<Data>
                     <MdLink size={20} />
-                    <a href="https://bmstecnologia.com.br">bmstecnologia.com.br</a>
-                </Data>
+                    <a href={`${user.blog}`}>{user.blog}</a>
+                </Data>)}
             </Inner>
-        </Container>
+        </Container >
     );
 }
 
+Profile.propTypes = {
+    user: PropTypes.shape({
+        "login": PropTypes.string.isRequired,
+        "name": PropTypes.string.isRequired,
+        "avatar_url": PropTypes.string.isRequired,
+        "followers": PropTypes.number.isRequired,
+        "following": PropTypes.number.isRequired,
+        "company": PropTypes.string,
+        "blog": PropTypes.string,
+        "location": PropTypes.string,
+    }).isRequired,
+};
 export default Profile
